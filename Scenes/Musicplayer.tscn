@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://gtd0f80gea6u"]
+
+[ext_resource type="AudioStream" uid="uid://bbdqfixdtjd0e" path="res://Assets/Audio/Steel of the Old Kings.ogg" id="1_w8ycp"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" unique_id=1760401399]
+stream = ExtResource("1_w8ycp")
+autoplay = true

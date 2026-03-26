@@ -1,42 +1,93 @@
 [gd_scene format=3 uid="uid://buybinstrmi7c"]
 
 [ext_resource type="Script" uid="uid://bcypbwy4s6tm0" path="res://Scenes/ScrScene/MainMenu.cs" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://bvna8mmlmtswo" path="res://1d0455fd-cb4b-4152-ab7e-71794694e482.jpg" id="2_1ehe0"]
+[ext_resource type="FontFile" uid="uid://b6q3v2c0pucwp" path="res://Assets/Fonts/Ancient Greece Demo.otf" id="3_ce3w2"]
 
-[node name="MainMenu" type="Control" unique_id=2106244504]
+[node name="MainMenu" type="Control" unique_id=2106244504 node_paths=PackedStringArray("settingsOverlay")]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 443.0
-offset_top = 121.0
-offset_right = -466.0
-offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_28flt")
+settingsOverlay = NodePath("SettingOverlay")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1461643381]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 149.0
-offset_right = 98.0
-offset_bottom = 189.0
+z_index = -2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.1980001
+offset_left = -2.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -0.30407715
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1ehe0")
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Background" unique_id=967592237]
+z_index = 1
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 1148.0
+offset_bottom = 113.0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.9137255, 0.92941177, 0.10980392, 1)
+theme_override_colors/font_outline_color = Color(2.5069532, 0, 0.37373278, 0.91800004)
+theme_override_fonts/font = ExtResource("3_ce3w2")
+theme_override_font_sizes/font_size = 81
+text = "EMPIRE'S DAWN"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackgroundShadow" type="ColorRect" parent="Background" unique_id=1097557870]
+modulate = Color(0.17, 0.17, 0.011899999, 1)
+light_mask = 11
+z_index = 2
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 230.0
+offset_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.07753155, 0.038156833, 0.048895426, 0.43529412)
+
+[node name="BackgroundShadow2" type="ColorRect" parent="Background" unique_id=985507623]
+modulate = Color(0.0007261493, 0.0013107515, 0.0005051887, 1)
+light_mask = 11
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 230.0
+offset_right = 1154.0
+offset_bottom = -666.0
+grow_vertical = 2
+color = Color(0.080593325, 0.0037087512, 0.15945083, 0.43529412)
 
 [node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=1159425323]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = 2
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 232.0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer" unique_id=2060423841]
+z_index = 1
 layout_mode = 2
-
-[node name="Title" type="Label" parent="Background/CenterContainer/VBoxContainer" unique_id=967592237]
-layout_mode = 2
-text = "EMPIRE'S DAWN"
-
-[node name="HSeparator" type="HSeparator" parent="Background/CenterContainer/VBoxContainer" unique_id=1178468188]
-layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
 
 [node name="BtnNewgame" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=1668535569]
 layout_mode = 2
@@ -51,6 +102,59 @@ layout_mode = 2
 text = "THOÁT GAME
 "
 
+[node name="BtnSetting" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=271287247]
+layout_mode = 2
+text = "CÀI ĐẶT
+"
+
+[node name="SettingOverlay" type="ColorRect" parent="." unique_id=425340516]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 228.0
+offset_top = 110.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingOverlay" unique_id=593094783]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingOverlay/PanelContainer" unique_id=1060671029]
+z_index = 1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="SettingOverlay/PanelContainer/VBoxContainer" unique_id=768666614]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Cài Đặt
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SettingOverlay/PanelContainer/VBoxContainer" unique_id=2014396702]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="BtnClose" type="Button" parent="SettingOverlay/PanelContainer/VBoxContainer" unique_id=724636691]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Đóng
+"
+
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnNewgame" to="." method="_on_btn_newgame_pressed"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnContinue" to="." method="_on_btn_continue_pressed"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnExit" to="." method="_on_btn_exit_pressed"]
+[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnSetting" to="." method="_on_btn_setting_pressed"]
+[connection signal="pressed" from="SettingOverlay/PanelContainer/VBoxContainer/BtnClose" to="." method="_on_btn_close_pressed"]

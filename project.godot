@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalData="*uid://cgv547w6oyhdg"
+Musicplayer="*uid://gtd0f80gea6u"
 
 [dotnet]
 

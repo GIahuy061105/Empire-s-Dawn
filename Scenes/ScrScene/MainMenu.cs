@@ -4,7 +4,30 @@ using DemoRPGGame.GameSystem;
 
 public partial class MainMenu : Control
 {
-	// Kiểm tra tên hàm này phải khớp 100% với Signal trong Godot
+	[Export] public Control settingsOverlay;
+	public override void _Ready()
+	{
+		settingsOverlay.Hide();
+		//Kết nối thanh trượt âm thanh
+		var slider = settingsOverlay.GetNode<HSlider>("PanelContainer/VBoxContainer/HSlider");
+		
+		slider.Value = AudioServer.GetBusVolumeDb(0);
+		slider.ValueChanged += (value) => {
+			AudioServer.SetBusVolumeDb(0, (float)value);
+			AudioServer.SetBusMute(0, value <= -49);
+		};
+	}
+	public void _on_btn_setting_pressed()
+	{
+		settingsOverlay.Show();
+		settingsOverlay.Modulate = new Color(1, 1, 1, 0); 
+		var tween = CreateTween();
+		tween.TweenProperty(settingsOverlay, "modulate", new Color(1, 1, 1, 1), 0.2f);
+	}
+	public void _on_btn_close_pressed()
+	{
+		settingsOverlay.Hide();
+	}
 	public void _on_btn_newgame_pressed()
 	{
 		GD.Print(">>> Nút Bắt đầu mới đã được nhấn!");
