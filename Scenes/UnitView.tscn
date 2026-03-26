@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d21gisb132i43"]
+
+[node name="UnitView" type="Node2D" unique_id=804030870]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1211745986]
+
+[node name="Nametag" type="Label" parent="." unique_id=756711488]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HPBar" type="ProgressBar" parent="." unique_id=82226096]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1001270125]

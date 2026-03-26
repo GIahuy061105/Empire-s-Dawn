@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cdw3n08gqlw8s"]
+
+[ext_resource type="Script" uid="uid://doqhkx2bq1iop" path="res://Scenes/ScrScene/BattleGrid.cs" id="1_erlrq"]
+
+[node name="BattleGrid" type="Node2D" unique_id=424313842]
+script = ExtResource("1_erlrq")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=327247067]
+format = 2
+
+[node name="UnitContainer" type="Node2D" parent="." unique_id=1982959901]

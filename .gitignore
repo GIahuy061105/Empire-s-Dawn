@@ -1,0 +1,16 @@
+# Godot-specific ignores
+.godot/
+*.translation
+
+# C# / Mono ignores
+.import/
+bin/
+obj/
+*.csproj
+*.sln
+.vs/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db

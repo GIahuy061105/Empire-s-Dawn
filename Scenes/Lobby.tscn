@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cm2c7afwmdngh"]
+
+[ext_resource type="Script" uid="uid://c60vs1f44okpu" path="res://Scenes/ScrScene/Lobby.cs" id="1_bpe3w"]
+[ext_resource type="PackedScene" uid="uid://52ne7ga7m4md" path="res://Scenes/HeroCard.tscn" id="2_lolwk"]
+
+[node name="Lobby" type="Control" unique_id=1438098150]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpe3w")
+HeroCardPrefab = ExtResource("2_lolwk")
+
+[node name="Label" type="Label" parent="." unique_id=1455086831]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ĐÂY LÀ SẢNH CHỜ"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=959081794]
+clip_contents = false
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 185.0
+offset_right = 103.0
+grow_vertical = 2
+
+[node name="HeroList" type="HBoxContainer" parent="ScrollContainer" unique_id=1938294140]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="." unique_id=1066425996]
+clip_contents = false
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 185.0
+offset_right = 103.0
+grow_vertical = 2
+
+[node name="HeroList" type="HBoxContainer" parent="ScrollContainer2" unique_id=1666763529]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="BtnBattle" type="Button" parent="." unique_id=479943309]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 6.0
+offset_right = 408.0
+offset_bottom = 70.0
+text = "Bắt đầu trận đấu"

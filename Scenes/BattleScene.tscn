@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://byofxup2lxc82"]
+
+[ext_resource type="PackedScene" uid="uid://cdw3n08gqlw8s" path="res://Scenes/BattleGrid.tscn" id="1_12f34"]
+
+[node name="BattleScene" type="Node2D" unique_id=84554624]
+
+[node name="BattleGrid" parent="." unique_id=424313842 instance=ExtResource("1_12f34")]
+position = Vector2(194, 204)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1605402892]
