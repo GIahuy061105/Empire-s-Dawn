@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://buybinstrmi7c"]
 
 [ext_resource type="Script" uid="uid://bcypbwy4s6tm0" path="res://Scenes/ScrScene/MainMenu.cs" id="1_28flt"]
-[ext_resource type="Texture2D" uid="uid://bvna8mmlmtswo" path="res://1d0455fd-cb4b-4152-ab7e-71794694e482.jpg" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://rhincwbbb64s" path="res://Assets/Photo/MainMenu-background.jpg" id="2_1ehe0"]
 [ext_resource type="FontFile" uid="uid://b6q3v2c0pucwp" path="res://Assets/Fonts/Ancient Greece Demo.otf" id="3_ce3w2"]
 
 [node name="MainMenu" type="Control" unique_id=2106244504 node_paths=PackedStringArray("settingsOverlay")]
@@ -89,13 +89,9 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 2
 
-[node name="BtnNewgame" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=1668535569]
-layout_mode = 2
-text = "BẮT ĐẦU MỚI"
-
 [node name="BtnContinue" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=565056551]
 layout_mode = 2
-text = "TIẾP TỤC"
+text = "VÀO GAME"
 
 [node name="BtnExit" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=359928355]
 layout_mode = 2
@@ -146,6 +142,9 @@ vertical_alignment = 1
 [node name="HSlider" type="HSlider" parent="SettingOverlay/PanelContainer/VBoxContainer" unique_id=2014396702]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+min_value = -40.0
+max_value = 20.0
+value = -10.0
 
 [node name="BtnClose" type="Button" parent="SettingOverlay/PanelContainer/VBoxContainer" unique_id=724636691]
 custom_minimum_size = Vector2(200, 50)
@@ -153,7 +152,6 @@ layout_mode = 2
 text = "Đóng
 "
 
-[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnNewgame" to="." method="_on_btn_newgame_pressed"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnContinue" to="." method="_on_btn_continue_pressed"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnExit" to="." method="_on_btn_exit_pressed"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnSetting" to="." method="_on_btn_setting_pressed"]

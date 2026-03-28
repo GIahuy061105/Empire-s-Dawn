@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvna8mmlmtswo"
-path="res://.godot/imported/1d0455fd-cb4b-4152-ab7e-71794694e482.jpg-3541cee769f2567050c5df73af47faef.ctex"
+uid="uid://dcl52yhjrg2vl"
+path="res://.godot/imported/Arthur-avatar.png-558098bde6deac25f866cd7390457c92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://1d0455fd-cb4b-4152-ab7e-71794694e482.jpg"
-dest_files=["res://.godot/imported/1d0455fd-cb4b-4152-ab7e-71794694e482.jpg-3541cee769f2567050c5df73af47faef.ctex"]
+source_file="res://Assets/Photo/Arthur-avatar.png"
+dest_files=["res://.godot/imported/Arthur-avatar.png-558098bde6deac25f866cd7390457c92.ctex"]
 
 [params]
 

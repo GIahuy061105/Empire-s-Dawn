@@ -1,44 +1,73 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using DemoRPGGame;
-
 public partial class Lobby : Control
 {
-	[Export] public PackedScene HeroCardPrefab; // Kéo file HeroCard.tscn vào đây ở Inspector
-	
+	[ExportGroup("Top Bar")]
+	[Export] public Label LblAccountName;
+	[Export] public Label LblAccountLevel;
+	[Export] public Label LblGold;
+	[Export] public Label LblDiamond;
+	[ExportGroup("Hero Formation")]
+	[Export] public HeroSlotUI[] HeroSlots; 
+
+	[ExportGroup("Overlays")]
+	[Export] public Control SettingOverlay;
+
 	public override void _Ready()
 	{
-		DisplayHeroes();
+		RefreshLobbyUI();
+		SettingOverlay.Hide();
 	}
 
-	public void DisplayHeroes()
+	public void RefreshLobbyUI()
 	{
-		var container = GetNode<Container>("ScrollContainer/HeroList");
-		
-		// Xóa các thẻ cũ nếu có
-		foreach (Node child in container.GetChildren()) child.QueueFree();
+		var player = GlobalData.Instance.CurrentPlayer;
+		LblGold.Text = player.Gold.ToString("N0");      // Hiện: 500,000
+		LblDiamond.Text = player.Diamond.ToString("N0"); // Hiện: 1,200
 
-		// Duyệt qua danh sách 4 Hero trong GlobalData
-		foreach (var hero in GlobalData.MyHeroes)
+		// --- Cập nhật 4 Thẻ Hero ---
+		for (int i = 0; i < HeroSlots.Length; i++)
 		{
-			// Tạo một thẻ mới từ bản thiết kế mẫu
-			var card = HeroCardPrefab.Instantiate();
-			GD.Print("Loại Node vừa tạo ra là: " + card.GetType().Name);
-			container.AddChild(card);
-
-			// Cập nhật thông tin lên thẻ
-			card.GetNode<Label>("VBoxContainer/NameLabel").Text = hero.Name;
-			card.GetNode<Label>("VBoxContainer/ClassLabel").Text = hero.GetType().Name;
-			
-			var hpBar = card.GetNode<ProgressBar>("VBoxContainer/HPBar");
-			hpBar.MaxValue = hero.SheetHP;
-			hpBar.Value = hero.CurrentHP;
+			if (i < player.OwnedCardIds.Count)
+			{
+				string heroId = player.OwnedCardIds[i];
+				var texture = GD.Load<Texture2D>($"res://Assets/Heroes/{heroId}_Avatar.png");
+				HeroSlots[i].SetupCard(heroId, texture, 1); 
+			}
+			else
+			{
+				HeroSlots[i].SetEmpty();
+			}
 		}
 	}
-
+	public void _on_btn_setting_pressed()
+	{
+		SettingOverlay.Show();
+	}
+	public void _on_btn_close_pressed()
+	{
+		SettingOverlay.Hide();
+	}
+	public void _on_btn_hero_view_pressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/HeroView.tscn");
+	}
+	public void _on_btn_bag_view_pressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/BagView.tscn");
+	}
 	public void _on_btn_battle_pressed()
 	{
-		// Chuyển sang Scene bàn cờ 10x10
+		GD.Print(">>> Tiến vào chiến trường 10x10!");
 		GetTree().ChangeSceneToFile("res://Scenes/BattleScene.tscn");
 	}
+
+	public void _on_btn_gacha_pressed()
+	{
+		GD.Print(">>> Mở màn hình triệu hồi!");
+		GetTree().ChangeSceneToFile("res://Scenes/GachaScene.tscn");
+	}
+	
 }

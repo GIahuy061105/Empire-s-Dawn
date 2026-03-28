@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://cm2c7afwmdngh"]
 
 [ext_resource type="Script" uid="uid://c60vs1f44okpu" path="res://Scenes/ScrScene/Lobby.cs" id="1_bpe3w"]
-[ext_resource type="PackedScene" uid="uid://52ne7ga7m4md" path="res://Scenes/HeroCard.tscn" id="2_lolwk"]
+[ext_resource type="Texture2D" uid="uid://cyj8gerffgoh7" path="res://Assets/Photo/lobby-background.png" id="3_wgubu"]
+[ext_resource type="PackedScene" uid="uid://cnobu3lult735" path="res://Scenes/HeroSlotUI.tscn" id="4_s3paf"]
+[ext_resource type="Texture2D" uid="uid://cfrtrpi38cf1x" path="res://Assets/Photo/Gold-removebg-40x40.png" id="4_xy1bw"]
+[ext_resource type="Texture2D" uid="uid://cik2romseklex" path="res://Assets/Photo/Diamond-removebg-40x40.png" id="5_vmftg"]
+[ext_resource type="Texture2D" uid="uid://d01w4msra1ef5" path="res://Assets/Photo/setting-40x40.png" id="6_vmftg"]
 
-[node name="Lobby" type="Control" unique_id=1438098150]
+[node name="Lobby" type="Control" unique_id=1438098150 node_paths=PackedStringArray("LblGold", "LblDiamond", "HeroSlots", "SettingOverlay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,52 +15,184 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bpe3w")
-HeroCardPrefab = ExtResource("2_lolwk")
+LblGold = NodePath("CanvasLayer/TopBar/GoldHolder/Label")
+LblDiamond = NodePath("CanvasLayer/TopBar/DiamondHolder/Label")
+HeroSlots = []
+SettingOverlay = NodePath("CanvasLayer2/SettingOverlay")
 
-[node name="Label" type="Label" parent="." unique_id=1455086831]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "ĐÂY LÀ SẢNH CHỜ"
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1010551975]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=959081794]
-clip_contents = false
-custom_minimum_size = Vector2(50, 60)
-layout_mode = 1
-anchors_preset = 9
+[node name="SettingOverlay" type="ColorRect" parent="CanvasLayer2" unique_id=2003310984]
+visible = false
+z_index = 10
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = 185.0
-offset_right = 103.0
+offset_left = 275.0
+offset_top = 114.0
+offset_right = 575.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/SettingOverlay" unique_id=878812669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/SettingOverlay/PanelContainer" unique_id=936518498]
+z_index = 1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/SettingOverlay/PanelContainer/VBoxContainer" unique_id=1968667335]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Cài Đặt
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer2/SettingOverlay/PanelContainer/VBoxContainer" unique_id=686526404]
+layout_mode = 2
+text = "Âm thanh
+"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer2/SettingOverlay/PanelContainer/VBoxContainer" unique_id=479258786]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="BtnClose" type="Button" parent="CanvasLayer2/SettingOverlay/PanelContainer/VBoxContainer" unique_id=902913187]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Đóng
+"
+
+[node name="Background" type="TextureRect" parent="." unique_id=217973860]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wgubu")
+expand_mode = 1
+
+[node name="HeroFormation" type="HBoxContainer" parent="." unique_id=1894412427]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -326.0
+offset_top = -220.0
+offset_right = 326.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HeroSlotUi" parent="HeroFormation" unique_id=1716835808 instance=ExtResource("4_s3paf")]
+layout_mode = 2
+
+[node name="HeroSlotUi2" parent="HeroFormation" unique_id=176308494 instance=ExtResource("4_s3paf")]
+layout_mode = 2
+
+[node name="HeroSlotUi3" parent="HeroFormation" unique_id=2031530428 instance=ExtResource("4_s3paf")]
+layout_mode = 2
+
+[node name="HeroSlotUi4" parent="HeroFormation" unique_id=1067104326 instance=ExtResource("4_s3paf")]
+layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2014889747]
+
+[node name="TopBar" type="HBoxContainer" parent="CanvasLayer" unique_id=228125208]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -482.0
+offset_bottom = 62.0
+grow_horizontal = 0
+
+[node name="GoldHolder" type="HBoxContainer" parent="CanvasLayer/TopBar" unique_id=550467848]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="CoinIcon" type="TextureRect" parent="CanvasLayer/TopBar/GoldHolder" unique_id=1491163583]
+texture_filter = 3
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("4_xy1bw")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/TopBar/GoldHolder" unique_id=1363440285]
+layout_mode = 2
+
+[node name="DiamondHolder" type="HBoxContainer" parent="CanvasLayer/TopBar" unique_id=985921550]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="DiamondIcon" type="TextureRect" parent="CanvasLayer/TopBar/DiamondHolder" unique_id=466432650]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_vmftg")
+
+[node name="Label" type="Label" parent="CanvasLayer/TopBar/DiamondHolder" unique_id=1682570976]
+layout_mode = 2
+
+[node name="BtnSetting" type="Button" parent="CanvasLayer/TopBar" unique_id=29251749]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("6_vmftg")
+
+[node name="LobbyMenu" type="VBoxContainer" parent="CanvasLayer" unique_id=2092179843]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -68.0
+offset_right = 200.0
+offset_bottom = 92.0
 grow_vertical = 2
 
-[node name="HeroList" type="HBoxContainer" parent="ScrollContainer" unique_id=1938294140]
-custom_minimum_size = Vector2(50, 60)
+[node name="HeroView" type="Button" parent="CanvasLayer/LobbyMenu" unique_id=1839330819]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+text = "HERO
+"
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="." unique_id=1066425996]
-clip_contents = false
-custom_minimum_size = Vector2(50, 60)
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = 185.0
-offset_right = 103.0
-grow_vertical = 2
-
-[node name="HeroList" type="HBoxContainer" parent="ScrollContainer2" unique_id=1666763529]
-custom_minimum_size = Vector2(50, 60)
+[node name="BagView" type="Button" parent="CanvasLayer/LobbyMenu" unique_id=870630356]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+text = "BAG
+"
 
-[node name="BtnBattle" type="Button" parent="." unique_id=479943309]
-layout_mode = 0
-offset_left = 205.0
-offset_top = 6.0
-offset_right = 408.0
-offset_bottom = 70.0
-text = "Bắt đầu trận đấu"
+[node name="Gacha" type="Button" parent="CanvasLayer/LobbyMenu" unique_id=99529715]
+layout_mode = 2
+size_flags_vertical = 3
+text = "GACHA
+"
+
+[node name="Battle" type="Button" parent="CanvasLayer/LobbyMenu" unique_id=372063117]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BATTLE
+"
+
+[connection signal="pressed" from="CanvasLayer2/SettingOverlay/PanelContainer/VBoxContainer/BtnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/TopBar/BtnSetting" to="." method="_on_btn_setting_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/HeroView" to="." method="_on_hero_view_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/BagView" to="." method="_on_bag_view_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/Gacha" to="." method="_on_gacha_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/Battle" to="." method="_on_battle_pressed"]

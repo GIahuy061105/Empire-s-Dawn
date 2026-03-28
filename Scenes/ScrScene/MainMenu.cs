@@ -1,6 +1,5 @@
 using Godot;
 using DemoRPGGame;
-using DemoRPGGame.GameSystem;
 
 public partial class MainMenu : Control
 {
@@ -10,11 +9,12 @@ public partial class MainMenu : Control
 		settingsOverlay.Hide();
 		//Kết nối thanh trượt âm thanh
 		var slider = settingsOverlay.GetNode<HSlider>("PanelContainer/VBoxContainer/HSlider");
-		
-		slider.Value = AudioServer.GetBusVolumeDb(0);
+		slider.Value = -10; 
+		AudioServer.SetBusVolumeDb(0, -10);
 		slider.ValueChanged += (value) => {
-			AudioServer.SetBusVolumeDb(0, (float)value);
-			AudioServer.SetBusMute(0, value <= -49);
+			float volumedb = (float)value;
+			AudioServer.SetBusVolumeDb(0, volumedb);
+			AudioServer.SetBusMute(0, value <= -39);
 		};
 	}
 	public void _on_btn_setting_pressed()
@@ -24,42 +24,29 @@ public partial class MainMenu : Control
 		var tween = CreateTween();
 		tween.TweenProperty(settingsOverlay, "modulate", new Color(1, 1, 1, 1), 0.2f);
 	}
-	public void _on_btn_close_pressed()
+	public void _on_btn_continue_pressed()
 	{
-		settingsOverlay.Hide();
-	}
-	public void _on_btn_newgame_pressed()
-	{
-		GD.Print(">>> Nút Bắt đầu mới đã được nhấn!");
-		
-		// 1. Khởi tạo dữ liệu (Arthur, Merlin...)
-		GlobalData.InitGame(); 
-		GD.Print(">>> Đã khởi tạo GlobalData thành công.");
+		GD.Print(">>> Đang kiểm tra dữ liệu để vào game...");
+		var loadedData = SaveManager.LoadGame();
 
-		// 2. Chuyển cảnh (Đảm bảo đường dẫn file Lobby.tscn chính xác)
-		Error err = GetTree().ChangeSceneToFile("res://Scenes/Lobby.tscn");
-
-		if (err == Error.Ok)
+		if (loadedData != null)
 		{
-			GD.Print(">>> Chuyển sang Lobby thành công!");
+			GlobalData.Instance.CurrentPlayer = loadedData;
+			GD.Print(">>> Tải save thành công. Tiếp tục hành trình.");
 		}
 		else
 		{
-			GD.PrintErr($">>> LỖI CHUYỂN CẢNH: {err}. Kiểm tra lại đường dẫn res://Scenes/Lobby.tscn");
+			GD.Print(">>> Không tìm thấy save. Khởi tạo tài khoản mới.");
 		}
-	}
-
-	public void _on_btn_continue_pressed()
-	{
-		GD.Print(">>> Đang thử tải file save...");
-		if (SaveManager.LoadGame())
-		{
-			GetTree().ChangeSceneToFile("res://Scenes/Lobby.tscn");
-		}
+		GetTree().ChangeSceneToFile("res://Scenes/Lobby.tscn");
 	}
 
 	public void _on_btn_exit_pressed()
 	{
 		GetTree().Quit();
+	}
+	public void _on_btn_close_pressed()
+	{
+		settingsOverlay.Hide();
 	}
 }
